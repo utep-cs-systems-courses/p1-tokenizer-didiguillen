@@ -20,7 +20,7 @@ int non_space_char(char c)
 
 char *copy_str(char *inStr, short len)
 {
-  char *p = malloc(sizeof(char)*len);
+  char *p = malloc(sizeof(char)*(len+1));
   while((*p = *inStr) != '\0'){
     printf("%c ", *p);
     p++;
@@ -49,8 +49,7 @@ char *token_terminator(char *token)
   char *p = token;
   while(non_space_char(*p))
     p++;
-  if(*p == '\0' || *p == ' ')
-    return p;
+  return p;
 }
 
 int count_tokens(char *str)

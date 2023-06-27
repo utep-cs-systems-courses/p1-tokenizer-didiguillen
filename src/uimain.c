@@ -12,7 +12,11 @@ int main()
   printf("%s", buf);
   printf("%d\n", space_char(' '));
   printf("%d\n", non_space_char(' '));
-  char *p = malloc(MAX*sizeof(char));
-  *p = *copy_str((&buf[0]), MAX);
+  short len = token_terminator(&buf[0]) - token_start(&buf[0]);
+  char *p = malloc((len+1)*sizeof(char));
+  printf("Length: %d\n", len);
+  p = copy_str((&buf[0]), len);
   printf("%s\n", *p);
 }
+
+
