@@ -20,12 +20,13 @@ int non_space_char(char c)
 
 char *copy_str(char *inStr, short len)
 {
-  char *p = (char *) malloc(sizeof(char)*len);
-  for(int i = 0; i < len; i++){
-    *p = *inStr;
+  char *p = malloc(sizeof(char)*len);
+  while((*p = *inStr) != '\0'){
+    printf("%c ", *p);
     p++;
     inStr++;
   }
+  p = p - len;
   return p;
 }
 

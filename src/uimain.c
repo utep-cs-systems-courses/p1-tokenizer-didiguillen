@@ -1,7 +1,8 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "tokenizer.h"
 
-#define MAX 5000
+#define MAX 50
 
 int main()
 {
@@ -11,6 +12,7 @@ int main()
   printf("%s", buf);
   printf("%d\n", space_char(' '));
   printf("%d\n", non_space_char(' '));
-  char *s = copy_str(buf, MAX);
-  printf("%s", *s);
+  char *p = malloc(MAX*sizeof(char));
+  *p = *copy_str((&buf[0]), MAX);
+  printf("%s\n", *p);
 }
