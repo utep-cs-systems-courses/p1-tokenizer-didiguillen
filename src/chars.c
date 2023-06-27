@@ -61,21 +61,20 @@ char *token_terminator(char *token)
 
 int count_tokens(char *str)
 {
-  char *p = str;
   int num_tokens = 0;
-  while(*p != '\0'){
-    char *bw = token_start(p);
-    if(bw){
-      printf("found nonspace %c\n", *bw);  
-      char *ew = token_terminator(bw);
-      printf("token end %c\n", *ew);
-      if(*ew == '\0')
-	num_tokens++;
-	break;
-      printf("new p%c\n", *p);
+  str = token_start(str);
+  while(*str != '\0'){
+    if(non_space_char(*str)){
+      printf("found nonspace %c\n", *str);  
+      str = token_terminator(str);
+      printf("token end %c\n", *str);
+      printf("new p%c\n", *str);
       num_tokens++;
     }
-    printf("numtokens: %d\n", num_tokens);
+    else{
+      str++;
+      continue;
+    }
   }
   printf("%d\n", num_tokens);
   return num_tokens;
