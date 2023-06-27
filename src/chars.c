@@ -65,10 +65,10 @@ int count_tokens(char *str)
   str = token_start(str);
   while(*str != '\0'){
     if(non_space_char(*str)){
-      printf("found nonspace %c\n", *str);  
+      //printf("found nonspace %c\n", *str);  
       str = token_terminator(str);
-      printf("token end %c\n", *str);
-      printf("new p%c\n", *str);
+      //printf("token end %c\n", *str);
+      //printf("new p%c\n", *str);
       num_tokens++;
     }
     else{
@@ -78,4 +78,28 @@ int count_tokens(char *str)
   }
   printf("%d\n", num_tokens);
   return num_tokens;
+}
+
+char **tokenize(char *str)
+{
+  int num_tokens = count_tokens(str);
+  if(num_tokens){
+    char **p = malloc((num_tokens+1)*sizeof(char));
+    short len = token_terminator(str) - token_start(str);
+    char *token = copy_str(str, len);
+    *p = token;
+    p++;
+    str = str + len;
+    token = token_terminator(str);
+    while(p < (num_tokens+1)){
+      len = token_terminator(token) - token_start(token);
+      token = copy_str(str, len);
+      *p = token;
+      p++;
+      str = str + len;
+    }
+    return p;
+  }
+  else
+    return NULL;
 }

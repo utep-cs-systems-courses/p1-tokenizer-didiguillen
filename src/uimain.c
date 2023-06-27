@@ -17,6 +17,8 @@ int main()
   printf("Length: %d\n", len);
   int num_words = count_tokens(&buf[0]);
   printf("%s\n", p);
+  char **t = tokenize(p);
+  printf("%s\n", *t);
 }
 
 short str_len(char *str)
