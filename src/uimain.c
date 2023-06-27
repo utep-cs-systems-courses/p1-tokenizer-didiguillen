@@ -12,11 +12,20 @@ int main()
   printf("%s", buf);
   printf("%d\n", space_char(' '));
   printf("%d\n", non_space_char(' '));
-  short len = token_terminator(&buf[0]) - token_start(&buf[0]);
-  char *p = malloc((len+1)*sizeof(char));
+  short len = str_len(&buf[0]);
+  char *p = copy_str((&buf[0]), len);
   printf("Length: %d\n", len);
-  p = copy_str((&buf[0]), len);
-  printf("%s\n", *p);
+  int num_words = count_tokens(&buf[0]);
+  printf("%s\n", p);
+}
+
+short str_len(char *str)
+{
+  char *p = str;
+  while(*str != '\0'){
+    str++;
+  }
+  return (str-p);
 }
 
 
