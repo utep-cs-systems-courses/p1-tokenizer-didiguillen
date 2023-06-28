@@ -9,17 +9,21 @@ int main()
   printf(">");
   char buf[MAX];
   fgets(buf, MAX, stdin);
-  printf("%s", buf);
-  printf("%d\n", space_char(' '));
-  printf("%d\n", non_space_char(' '));
+  //printf("%s", buf);
+  //printf("%d\n", space_char(' '));
+  //printf("%d\n", non_space_char(' '));
   short len = str_len(&buf[0]);
   char *p = copy_str((&buf[0]), len);
   printf("Length: %d\n", len);
   int num_words = count_tokens(&buf[0]);
   printf("%s\n", p);
   char **t = tokenize(p);
-  printf("back in main: %s\n", *t);
-  printf("back in main2: %s\n", *(t+1));
+  print_tokens(t);
+  printf("\n");
+  //printf("\nin main: %sdododo\n", *(t+2));
+  free_tokens(t);
+  printf("Success\n");
+  
 }
 
 short str_len(char *str)

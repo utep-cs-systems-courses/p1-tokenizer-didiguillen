@@ -90,11 +90,11 @@ char **tokenize(char *str)
     while(counter < num_tokens){
       short len = token_terminator(start) - start;
       char *token = copy_str(start, len);
-      printf("in tokenize while loop %d: %s\n", counter,token);
+      // printf("in tokenize while loop %d: %s\n", counter,token);
       *p = token;
       p++;
       start = token_start(str+len);
-      printf("token terminator: %s", start);
+      // printf("token terminator: %s", start);
       counter++;
     }
     char *end_str = malloc(sizeof(char));
@@ -105,4 +105,26 @@ char **tokenize(char *str)
   }
   else
     return NULL;
+}
+
+void print_tokens(char **tokens)
+{
+  while(**tokens != '\0'){
+    printf("%s ", *tokens);
+    tokens++;
+  }
+}
+
+void free_tokens(char **tokens)
+{
+  int counter = 0;
+  while(**tokens != '\0'){
+    free(*tokens);
+    tokens++;
+    printf("free_tokens while loop\n");
+    counter++;
+  }
+  free(*tokens);
+  tokens = tokens - (counter);
+  free(tokens);
 }
