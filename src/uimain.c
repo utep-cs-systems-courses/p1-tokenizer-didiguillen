@@ -14,7 +14,7 @@ int main()
     char buf[MAX];
     fgets(buf, MAX, stdin);
     if(buf[0] == 'q' && !(non_space_char(buf[1]))){
-      free_history(history);
+      //free_history(history);
       break;
     }
     else if(buf[0] == 'h' && !(non_space_char(buf[1])))
@@ -23,13 +23,11 @@ int main()
       //printf("%s", buf);
       //printf("%d\n", space_char(' '));
       //printf("%d\n", non_space_char(' '));
-      short len = str_len(&buf[0]);
-      char *p = copy_str((&buf[0]), len);
-      add_history(history, p);
-      printf("Length: %d\n", len);
+      add_history(history, copy_str(&buf[0], str_len(&buf[0])));
+      //printf("Length: %d\n", len);
       //int num_words = count_tokens(&buf[0]);
       //printf("%s\n", p);
-      char **t = tokenize(p);
+      char **t = tokenize(&buf[0]);
       print_tokens(t);
       printf("\n");
       //printf("\nin main: %sdododo\n", *(t+2));
@@ -44,10 +42,10 @@ int main()
 short str_len(char *str)
 {
   char *p = str;
-  while(*str != '\0'){
-    str++;
+  while(*p != '\0'){
+    p++;
   }
-  return (str-p);
+  return ((p-1)-str);
 }
 
 void history_ui(List *history)
