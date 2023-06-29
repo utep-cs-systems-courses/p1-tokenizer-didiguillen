@@ -11,6 +11,9 @@ typedef struct s_List {
   struct s_Item *root;
 } List;
 
+/* UI for history, only used in uimain.c */
+void history_ui(List *history);
+
 /* Initialize the linked list to keep the history. */
 List* init_history();
 

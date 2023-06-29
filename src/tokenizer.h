@@ -4,6 +4,7 @@
 /* Returns the length of a string terminated with '\0' 
    This method is used in uimain.c only */
 short str_len(char* str);
+
 /* Return true (non-zero) if c is a whitespace characer
    ('\t' or ' ').  
    Zero terminators are not printable (therefore false) */
