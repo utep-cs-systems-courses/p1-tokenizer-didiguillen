@@ -14,7 +14,7 @@ int main()
     char buf[MAX];
     fgets(buf, MAX, stdin);
     if(buf[0] == 'q' && !(non_space_char(buf[1]))){
-      //free_history(history);
+      free_history(history);
       break;
     }
     else if(buf[0] == 'h' && !(non_space_char(buf[1])))

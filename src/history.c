@@ -40,7 +40,7 @@ void add_history(List *list, char *str)
     Item *new_item = malloc(sizeof(Item));
     new_item->id = curr_id+1;
     short len = str_len(str);
-    new_item->str = copy_str(str, len);
+    new_item->str = copy_str(str, len+1);
     curr_item->next = new_item;
   }
 }
@@ -71,11 +71,10 @@ void print_history(List *list)
 
 void free_history(List *list)
 {
-  while(list->root->next){
-    Item *next = list->root->next;
+  while(list->root){
+    Item *new_root = list->root->next;
     free(list->root);
-    list->root = next;
+    list->root = new_root;
   }
-  free(list->root);
   free(list);
 }
