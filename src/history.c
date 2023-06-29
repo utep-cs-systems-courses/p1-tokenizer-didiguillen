@@ -73,5 +73,11 @@ void print_history(List *list)
 
 void free_history(List *list)
 {
-  
+  while(*list->*root->next){
+    Item *next = *list->*root->next;
+    free(*list->root);
+    *list->root = next;
+  }
+  free(*list->root);
+  free(list);
 }
