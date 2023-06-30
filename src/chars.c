@@ -30,10 +30,12 @@ char *copy_str(char *inStr, short len)
   }
   //printf("%c ", *p);
   if(*p != '\0'){
-    *(p+1) = '\0';
-    p++;
+    printf("in if stmt copy_str %c\n",*p); 
+    *p = '\0';
   }
+  printf("p value 1: %c \n", *p);
   p = p - len;
+  printf("p value 2: %c \n", *p);
   //printf("%c ", *p);
   return p;
 }
@@ -83,6 +85,7 @@ char **tokenize(char *str)
     char **p = malloc((num_tokens+1)*sizeof(char*));
     int counter = 1;
     char *start = token_start(str);
+    printf("token_start: %c\n", *start);
     while(counter <= num_tokens){
       char *end = token_terminator(start);
       printf("token terminator: %c\n",*end);
