@@ -79,11 +79,10 @@ int count_tokens(char *str)
 char **tokenize(char *str)
 {
   int num_tokens = count_tokens(str);
-  char *c_str = str;
   if(num_tokens){
     char **p = malloc((num_tokens+1)*sizeof(char*));
     int counter = 1;
-    char *start = token_start(c_str);
+    char *start = token_start(str);
     while(counter <= num_tokens){
       char *end = token_terminator(start);
       printf("token terminator: %c\n",*end);
@@ -94,6 +93,7 @@ char **tokenize(char *str)
       *p = token;
       p++;
       start = token_start(end);
+      printf("next token start: %c\n", *start);
       // printf("token terminator: %s", start);
       counter++;
     }

@@ -3,7 +3,7 @@
 #include "tokenizer.h"
 #include "history.h"
 
-#define MAX 50
+#define MAX 100
 
 int main()
 {
