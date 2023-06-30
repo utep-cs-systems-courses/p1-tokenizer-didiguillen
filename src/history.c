@@ -12,14 +12,13 @@ List *init_history()
 
 void add_history(List *list, char *str)
 {
-  printf("In add history\n");
   List *copy_list = list;
   if(!(copy_list->root)){
     Item *new_item = malloc(sizeof(Item));
     new_item->id = 1;
     short len = str_len(str);
     printf("in add_history %s\n",str);
-    new_item->str = copy_str(str, len+1);
+    new_item->str = copy_str(str, len);
     printf("str in node: %s", new_item->str);
     list->root = new_item;
   }
@@ -40,7 +39,8 @@ void add_history(List *list, char *str)
     Item *new_item = malloc(sizeof(Item));
     new_item->id = curr_id+1;
     short len = str_len(str);
-    new_item->str = copy_str(str, len+1);
+    new_item->str = copy_str(str, len);
+    printf("str in node: %s", new_item->str);
     curr_item->next = new_item;
   }
 }

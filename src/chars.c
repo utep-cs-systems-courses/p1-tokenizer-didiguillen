@@ -86,6 +86,7 @@ char **tokenize(char *str)
     char *start = token_start(c_str);
     while(counter <= num_tokens){
       char *end = token_terminator(start);
+      printf("token terminator: %c\n",*end);
       short len = end - start;
       printf("Length of token: %d\n", len);
       char *token = copy_str(start, len);
