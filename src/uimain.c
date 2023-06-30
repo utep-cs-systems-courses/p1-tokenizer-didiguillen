@@ -18,7 +18,7 @@ int main()
       break;
     }
     else if(str_len(&buf[0]) <= 1){
-      printf("No input given! Please try again.\n");
+      printf("No input given! Please try again.\n\n");
       continue;
     }
     else if(str_len(&buf[0]) == 2 && buf[0] == 'h')
@@ -27,19 +27,12 @@ int main()
       short len = str_len(&buf[0]);
       char *s = malloc(len*sizeof(char));
       s = copy_str(&buf[0], len);
-      //printf("%s", buf);
-      //printf("%d\n", space_char(' '));
-      //printf("%d\n", non_space_char(' '));
       add_history(history, s);
-      //printf("Length: %d\n", len);
-      //int num_words = count_tokens(&buf[0]);
-      //printf("%s\n", p);
       char **t = tokenize(&buf[0]);
       print_tokens(t);
       printf("\n");
-      //printf("\nin main: %sdododo\n", *(t+2));
       free_tokens(t);
-      printf("Success\n");
+      printf("Successfully tokenized!\n");
     }
   }
   printf("Goodbye!\n");

@@ -21,22 +21,15 @@ int non_space_char(char c)
 char *copy_str(char *inStr, short len)
 {
   char *p = malloc(sizeof(char)*(len+1));
-  printf("in copy_str: ");
   for(int i = 0; i < len; i++){
     *p = *inStr;
-    printf("%c ", *p);
     p++;
     inStr++;
   }
-  //printf("%c ", *p);
-  if(*p != '\0'){
-    printf("in if stmt copy_str %c\n",*p); 
+  if(*p != '\0'){ 
     *p = '\0';
   }
-  printf("p value 1: %c \n", *p);
   p = p - len;
-  printf("p value 2: %c \n", *p);
-  //printf("%c ", *p);
   return p;
 }
 
@@ -74,7 +67,6 @@ int count_tokens(char *str)
     else
       tmp_str++;
   }
-  printf("num tokens: %d\n", num_tokens);
   return num_tokens;
 }
 
@@ -85,19 +77,13 @@ char **tokenize(char *str)
     char **p = malloc((num_tokens+1)*sizeof(char*));
     int counter = 1;
     char *start = token_start(str);
-    printf("token_start: %c\n", *start);
     while(counter <= num_tokens){
       char *end = token_terminator(start);
-      printf("token terminator: %c\n",*end);
       short len = end - start;
-      printf("Length of token: %d\n", len);
       char *token = copy_str(start, len);
-      printf("in tokenize while loop %d: %s\n", counter,token);
       *p = token;
       p++;
       start = token_start(end);
-      printf("next token start: %c\n", *start);
-      // printf("token terminator: %s", start);
       counter++;
     }
     char *end_str = malloc(sizeof(char));
@@ -124,7 +110,6 @@ void free_tokens(char **tokens)
   while(**tokens != '\0'){
     free(*tokens);
     tokens++;
-    printf("free_tokens while loop\n");
     counter++;
   }
   free(*tokens);
