@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "tokenizer.h"
 
+//This method checks whether the char is a space or not
 int space_char(char c)
 {
   if(c == ' ' || c == '\n' || c == '\t')
@@ -10,6 +11,7 @@ int space_char(char c)
     return 0;
 }
 
+//This method checks for a character that is not a space
 int non_space_char(char c)
 {
   if(space_char(c) || c == '\0')
@@ -18,6 +20,7 @@ int non_space_char(char c)
     return 1;
 }
 
+//This method makes a copy of the given string and returns a pointer to the copy.
 char *copy_str(char *inStr, short len)
 {
   char *p = malloc(sizeof(char)*(len+1));
@@ -33,6 +36,7 @@ char *copy_str(char *inStr, short len)
   return p;
 }
 
+//This method determines the start of a token (the first non-space char)
 char *token_start(char *str)
 {
   char *p = str;
@@ -47,6 +51,7 @@ char *token_start(char *str)
   return p;
 }
 
+//This method determines the end of a token (searches for the nearest space char)
 char *token_terminator(char *token)
 {
   char *p = token;
@@ -55,6 +60,7 @@ char *token_terminator(char *token)
   return p;
 }
 
+//This method counts the number of tokens in a string
 int count_tokens(char *str)
 {
   int num_tokens = 0;
@@ -70,12 +76,14 @@ int count_tokens(char *str)
   return num_tokens;
 }
 
+//This method tokenizes a string
 char **tokenize(char *str)
 {
   int num_tokens = count_tokens(str);
+  //If there are no tokens, there's nothing to tokenize
   if(num_tokens){
     char **p = malloc((num_tokens+1)*sizeof(char*));
-    int counter = 1;
+    int counter = 1; //at least one token exists
     char *start = token_start(str);
     while(counter <= num_tokens){
       char *end = token_terminator(start);
@@ -83,19 +91,20 @@ char **tokenize(char *str)
       char *token = copy_str(start, len);
       *p = token;
       p++;
-      start = token_start(end);
+      start = token_start(end); //start = next token starting after previous token
       counter++;
     }
-    char *end_str = malloc(sizeof(char));
+    char *end_str = malloc(sizeof(char)); //char pointer to contain string terminator
     *end_str = '\0';
     *p = end_str;
-    p = p - num_tokens;
+    p = p - num_tokens; //pointer now points at beginning of token vector
     return p;
   }
   else
     return NULL;
 }
 
+//This method prints tokens from the given token vector
 void print_tokens(char **tokens)
 {
   while(**tokens != '\0'){
@@ -104,6 +113,7 @@ void print_tokens(char **tokens)
   }
 }
 
+//This method frees the tokens and token vector from memory
 void free_tokens(char **tokens)
 {
   int counter = 0;
